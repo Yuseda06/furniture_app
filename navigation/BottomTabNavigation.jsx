@@ -1,5 +1,3 @@
-import { View, Text } from "react-native";
-import { useState, useEffect } from "react";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Search, Profile } from "../screens";
