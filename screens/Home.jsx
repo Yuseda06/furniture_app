@@ -1,7 +1,15 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import styles from "./home.style";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
+import { Welcome } from "../components";
+import Carousel from "../components/home/Carousel";
 
 const Home = () => {
   return (
@@ -21,6 +29,10 @@ const Home = () => {
           </View>
         </View>
       </View>
+      <ScrollView>
+        <Welcome />
+        <Carousel />
+      </ScrollView>
     </SafeAreaView>
   );
 };
