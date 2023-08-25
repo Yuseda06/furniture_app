@@ -10,16 +10,18 @@ import styles from "./home.style";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Welcome } from "../components";
 import Carousel from "../components/home/Carousel";
+import Headings from "../components/home/Headings";
+import ProductRow from "../components/products/ProductRow";
 
 const Home = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name="location-outline" size={24} />
           <Text style={styles.location}>Shanghai China</Text>
 
-          <View style={{ alignItem: "flex-end" }}>
+          <View style={{ alignItems: "flex-end" }}>
             <View style={styles.cartCount}>
               <Text style={styles.cartNumber}> 8 </Text>
             </View>
@@ -32,6 +34,8 @@ const Home = () => {
       <ScrollView>
         <Welcome />
         <Carousel />
+        <Headings />
+        <ProductRow />
       </ScrollView>
     </SafeAreaView>
   );
