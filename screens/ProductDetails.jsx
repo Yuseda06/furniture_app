@@ -1,10 +1,19 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./productDetails.style";
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-import { COLORS } from "../constants";
+import {
+  Ionicons,
+  SimpleLineIcons,
+  MaterialCommunityIcons,
+  Fontisto,
+} from "@expo/vector-icons";
+import { COLORS, SIZES } from "../constants";
+import * as Haptics from "expo-haptics";
 
 const ProductDetails = ({ navigation }) => {
+  const [count, setCount] = useState(1);
+  const randomWords = require("lorem-ipsum-generator");
+
   return (
     <View style={styles.container}>
       <View style={styles.upperRow}>
@@ -40,14 +49,88 @@ const ProductDetails = ({ navigation }) => {
           </View>
 
           <View style={styles.rating}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => [
+                setCount(count + 1),
+                Haptics.notificationAsync(
+                  Haptics.NotificationFeedbackType.Success
+                ),
+              ]}
+            >
               <SimpleLineIcons name="plus" size={20} />
             </TouchableOpacity>
-            <Text style={styles.ratingText}> 1 </Text>
-            <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.ratingText}>
+              {" "}
+              {"  "}
+              {count}
+              {"  "}{" "}
+            </Text>
+            <TouchableOpacity
+              onPress={() => [
+                count > 1 ? setCount(count - 1) : null,
+                Haptics.notificationAsync(
+                  Haptics.NotificationFeedbackType.Success
+                ),
+              ]}
+            >
               <SimpleLineIcons name="minus" size={20} />
             </TouchableOpacity>
           </View>
+        </View>
+        <View style={styles.descriptionWrapper}>
+          <Text style={styles.description}> Description</Text>
+          <Text style={styles.descText}>
+            {randomWords.getLoremIpsumText(67)}
+          </Text>
+        </View>
+
+        <View
+          style={{
+            marginBottom: SIZES.small,
+            justifyContent: "center",
+          }}
+        >
+          <View style={styles.location}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Ionicons name="location-outline" size={20} />
+
+              <Text>{"   "}Dallas</Text>
+            </View>
+
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialCommunityIcons name="truck-delivery-outline" size={20} />
+
+              <Text>{"   "}Free Delivery</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.cartRow}>
+          <TouchableOpacity
+            onPress={() => {}}
+            style={{
+              width: SIZES.width * 0.7,
+              backgroundColor: COLORS.black,
+              padding: SIZES.small / 2,
+              borderRadius: SIZES.large,
+            }}
+          >
+            <Text style={styles.cartTitle}>BUY NOW</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {}}
+            style={{
+              width: 37,
+              height: 37,
+              backgroundColor: COLORS.black,
+              borderRadius: 50,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Fontisto name="shopping-bag" size={20} color={COLORS.lightWhite} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

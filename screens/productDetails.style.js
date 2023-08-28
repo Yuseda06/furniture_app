@@ -39,6 +39,13 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "bold",
     fontSize: SIZES.large,
+    marginLeft: 5,
+  },
+  cartTitle: {
+    marginLeft: SIZES.small,
+    fontFamily: "semibold",
+    fontSize: SIZES.medium,
+    color: COLORS.lightWhite,
   },
   priceWrapper: {
     backgroundColor: COLORS.secondary,
@@ -57,6 +64,14 @@ const styles = StyleSheet.create({
     width: SIZES.width - 10,
     top: 5,
   },
+  cartRow: {
+    paddingBottom: SIZES.small,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: SIZES.width,
+    paddingHorizontal: 15,
+  },
   rating: {
     top: SIZES.large,
     flexDirection: "row",
@@ -67,6 +82,30 @@ const styles = StyleSheet.create({
   ratingText: {
     color: COLORS.gray,
     fontFamily: "medium",
+  },
+  descriptionWrapper: {
+    marginTop: SIZES.large * 2,
+    marginHorizontal: SIZES.large,
+  },
+  description: {
+    fontFamily: "medium",
+    fontSize: SIZES.large - 2,
+  },
+  descText: {
+    fontFamily: "regular",
+    fontSize: SIZES.small,
+    textAlign: "justify",
+    marginBottom: SIZES.small,
+    marginLeft: 5,
+  },
+  location: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.secondary,
+    padding: 5,
+    borderRadius: SIZES.large,
+    marginHorizontal: 15,
   },
 });
 
