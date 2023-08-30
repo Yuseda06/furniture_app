@@ -5,10 +5,9 @@ const styles = StyleSheet.create({
   container: {
     width: 182,
     height: 240,
-    marginEnd: 5,
+    marginEnd: 15,
     borderRadius: SIZES.medium,
     backgroundColor: COLORS.secondary,
-    marginBottom: 100,
   },
   imageContainer: {
     flex: 1,

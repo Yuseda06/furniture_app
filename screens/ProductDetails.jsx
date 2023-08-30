@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./productDetails.style";
+import { useRoute } from "@react-navigation/native";
 import {
   Ionicons,
   SimpleLineIcons,
@@ -11,7 +12,10 @@ import { COLORS, SIZES } from "../constants";
 import * as Haptics from "expo-haptics";
 
 const ProductDetails = ({ navigation }) => {
+  const route = useRoute();
+  const { item } = route.params;
   const [count, setCount] = useState(1);
+
   const randomWords = require("lorem-ipsum-generator");
 
   return (
@@ -27,16 +31,16 @@ const ProductDetails = ({ navigation }) => {
       </View>
       <Image
         source={{
-          uri: "https://d326fntlu7tb1e.cloudfront.net/uploads/cb2e64a8-ad4c-4d45-b58b-b0c7e11b6bb4-fn1.jpg",
+          uri: item.imageUrl,
         }}
         style={styles.image}
       />
 
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>MYR 3,400.00</Text>
+            <Text style={styles.price}>{item.price}</Text>
           </View>
         </View>
 
@@ -79,9 +83,7 @@ const ProductDetails = ({ navigation }) => {
         </View>
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}> Description</Text>
-          <Text style={styles.descText}>
-            {randomWords.getLoremIpsumText(67)}
-          </Text>
+          <Text style={styles.descText}>{item.description}</Text>
         </View>
 
         <View
@@ -94,7 +96,10 @@ const ProductDetails = ({ navigation }) => {
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Ionicons name="location-outline" size={20} />
 
-              <Text>{"   "}Dallas</Text>
+              <Text>
+                {"   "}
+                {item.product_location}
+              </Text>
             </View>
 
             <View style={{ flexDirection: "row", alignItems: "center" }}>
