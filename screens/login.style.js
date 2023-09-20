@@ -17,6 +17,36 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: SIZES.xxLarge,
   },
+  wrapper: {
+    marginBottom: 20,
+  },
+  label: {
+    fontFamily: "regular",
+    fontSize: SIZES.xSmall,
+    textAlign: "right",
+    marginBottom: 5,
+    marginEnd: 5,
+  },
+  inputWrapper: (borderColor) => ({
+    borderColor: borderColor,
+    backgroundColor: COLORS.lightWhite,
+    borderWidth: 1,
+    height: 50,
+    borderRadius: 12,
+    flexDirection: "row",
+    paddingHorizontal: 15,
+    alignItems: "center",
+  }),
+  iconStyle: {
+    marginRight: 10,
+  },
+  errorMessage: {
+    color: COLORS.red,
+    fontFamily: "regular",
+    marginTop: 5,
+    marginLeft: 5,
+    fontSize: SIZES.xSmall,
+  },
 });
 
 export default styles;

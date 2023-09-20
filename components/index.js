@@ -3,5 +3,6 @@ import ProductCardView from "./products/ProductCardView";
 import ProductList from "./products/ProductList";
 import ProductRow from "./products/ProductRow";
 import BackBtn from "./BackBtn";
+import Button from "./Button";
 
-export { BackBtn, Welcome, ProductCardView, ProductList, ProductRow };
+export { Button, BackBtn, Welcome, ProductCardView, ProductList, ProductRow };
