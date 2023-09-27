@@ -47,6 +47,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: SIZES.xSmall,
   },
+  registration: {
+    marginTop: 20,
+
+    textAlign: "center",
+  },
 });
 
 export default styles;

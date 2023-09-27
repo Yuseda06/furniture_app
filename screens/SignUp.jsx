@@ -15,8 +15,8 @@ import { BackBtn, Button } from "../components";
 import styles from "./login.style";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { COLORS } from "../constants";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { COLORS, SIZES } from "../constants";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -25,11 +25,16 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Provide a valid email address")
     .required("Required"),
+  location: Yup.string()
+    .min(3, "Provide a valid location")
+    .required("Required"),
+  username: Yup.string()
+    .min(3, "Provide a valid username")
+    .required("Required"),
 });
 
-const LoginPage = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
   const [loader, setLoader] = useState(false);
-  const [responseData, setResponseData] = useState(null);
   const [obsecureText, setObsecureText] = useState(false);
 
   const inValidForm = () => {
@@ -53,11 +58,21 @@ const LoginPage = ({ navigation }) => {
           <BackBtn onPress={() => navigation.goBack()} />
           <Image
             source={require("../assets/images/bk.png")}
-            style={styles.cover}
+            style={{
+              height: SIZES.height / 3,
+              width: SIZES.width - 60,
+              resizeMode: "contain",
+              marginBottom: SIZES.xxLarge,
+            }}
           />
           <Text style={styles.title}>Unlimited Luxurious Furniture</Text>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{
+              email: "",
+              password: "",
+              location: "",
+              username: "",
+            }}
             validationSchema={validationSchema}
             onSubmit={(values) => console.log(values)}
           >
@@ -73,6 +88,39 @@ const LoginPage = ({ navigation }) => {
             }) => (
               <View>
                 <View>
+                  <View style={styles.wrapper}>
+                    <Text style={styles.label}>Username</Text>
+                    <View
+                      style={styles.inputWrapper(
+                        touched.email ? COLORS.primary : COLORS.offwhite
+                      )}
+                    >
+                      <MaterialCommunityIcons
+                        name="face-man-profile"
+                        size={20}
+                        color={COLORS.gray}
+                        style={styles.iconStyle}
+                      />
+
+                      <TextInput
+                        placeholder="Enter username"
+                        onFocus={() => {
+                          setFieldTouched("username");
+                        }}
+                        onBlur={() => {
+                          setFieldTouched("username", "");
+                        }}
+                        autoCapitalize="none"
+                        onChangeText={handleChange("username")}
+                        autoCorrect={false}
+                        style={{ flex: 1 }}
+                      />
+                    </View>
+
+                    {touched.email && errors.email && (
+                      <Text style={styles.errorMessage}>{errors.email}</Text>
+                    )}
+                  </View>
                   <View style={styles.wrapper}>
                     <Text style={styles.label}>Email</Text>
                     <View
@@ -104,6 +152,39 @@ const LoginPage = ({ navigation }) => {
 
                     {touched.email && errors.email && (
                       <Text style={styles.errorMessage}>{errors.email}</Text>
+                    )}
+                  </View>
+                  <View style={styles.wrapper}>
+                    <Text style={styles.label}>Location</Text>
+                    <View
+                      style={styles.inputWrapper(
+                        touched.location ? COLORS.primary : COLORS.offwhite
+                      )}
+                    >
+                      <Ionicons
+                        name="location-outline"
+                        size={20}
+                        color={COLORS.gray}
+                        style={styles.iconStyle}
+                      />
+
+                      <TextInput
+                        placeholder="Enter location"
+                        onFocus={() => {
+                          setFieldTouched("location");
+                        }}
+                        onBlur={() => {
+                          setFieldTouched("location", "");
+                        }}
+                        autoCapitalize="none"
+                        onChangeText={handleChange("location")}
+                        autoCorrect={false}
+                        style={{ flex: 1 }}
+                      />
+                    </View>
+
+                    {touched.location && errors.location && (
+                      <Text style={styles.errorMessage}>{errors.location}</Text>
                     )}
                   </View>
 
@@ -157,7 +238,7 @@ const LoginPage = ({ navigation }) => {
                   </View>
 
                   <Button
-                    title={"L O G I N"}
+                    title={"S I G N   U P"}
                     onPress={isValid ? handleSubmit : inValidForm}
                     isValid={isValid}
                   />
@@ -178,4 +259,4 @@ const LoginPage = ({ navigation }) => {
   );
 };
 
-export default LoginPage;
+export default SignUp;
